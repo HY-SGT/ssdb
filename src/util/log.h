@@ -18,7 +18,7 @@ found in the LICENSE file.
 #include <assert.h>
 #include <signal.h>
 #include <time.h>
-#if (_WIN32 || _WIN64)
+#if SSDB_PLATFORM_WINDOWS
 #include "platform_win.h"
 #ifndef PATH_MAX
 #define PATH_MAX 260

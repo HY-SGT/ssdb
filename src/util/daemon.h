@@ -6,7 +6,7 @@ found in the LICENSE file.
 #ifndef UTIL_DAEMON_H
 #define UTIL_DAEMON_H
 
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 int daemonize(const char *dir=NULL){
 	return -1;
 }

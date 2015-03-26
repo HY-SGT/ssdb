@@ -1,4 +1,4 @@
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #include "../src/util/platform_win.h"
 #include <stdio.h>
 #include <io.h>

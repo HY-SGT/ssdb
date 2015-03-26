@@ -20,7 +20,7 @@ found in the LICENSE file.
 #include <assert.h>
 #include <signal.h>
 #include <time.h>
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #include "util/platform_win.h"
 #define sleep(x)	_sleep( (x)*1000 )
 #define usleep(x)	_sleep( (x)/1000 );

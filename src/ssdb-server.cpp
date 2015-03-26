@@ -16,7 +16,7 @@ found in the LICENSE file.
 #include "net/server.h"
 #include "ssdb/ssdb.h"
 #include "serv.h"
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #include <process.h>
 int kill(int pid, int code)
 {
@@ -57,7 +57,7 @@ void remove_pidfile();
 void kill_process();
 
 int main(int argc, char **argv){
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 	WSADATA wsadata={0};
 	WSAStartup(MAKEWORD(2,2), &wsadata);
 #endif

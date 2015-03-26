@@ -52,8 +52,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;LEVELDB_VERSION=9999;PTW32_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;P:\sdk\util\pthreads;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;LEVELDB_VERSION=9999;PTW32_STATIC_LIB;SSDB_PLATFORM_WINDOWS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;..\deps\pthread-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -70,8 +70,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;PTW32_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;P:\sdk\util\pthreads;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;PTW32_STATIC_LIB;SSDB_PLATFORM_WINDOWS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;..\deps\pthread-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +166,6 @@
     <ClInclude Include="..\src\version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\util\pthreads\pthread.c" />
     <ClCompile Include="..\deps\leveldb-1.14.0\db\builder.cc">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
@@ -419,6 +418,7 @@
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\deps\pthread-win32\pthread.c" />
     <ClCompile Include="..\deps\snappy-1.1.0\snappy-c.cc" />
     <ClCompile Include="..\deps\snappy-1.1.0\snappy-sinksource.cc" />
     <ClCompile Include="..\deps\snappy-1.1.0\snappy-stubs-internal.cc" />

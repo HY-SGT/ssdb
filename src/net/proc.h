@@ -87,7 +87,7 @@ struct BytesHash{
 	#include <tr1/unordered_map>
 	typedef std::tr1::unordered_map<Bytes, Command *, BytesHash, BytesEqual> proc_map_t;
 #else
-	#if defined(NEW_MAC) || defined(_WIN32) || defined(_WIN64)
+	#if defined(NEW_MAC) || defined(SSDB_PLATFORM_WINDOWS)
 		#include <unordered_map>
 		typedef std::unordered_map<Bytes, Command *, BytesHash, BytesEqual> proc_map_t;
 	#else

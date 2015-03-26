@@ -377,9 +377,6 @@
     <ClCompile Include="..\src\ssdb-server.cpp">
       <Filter>源文件\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\util\pthreads\pthread.c">
-      <Filter>deps</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\slave.cpp">
       <Filter>源文件\src</Filter>
     </ClCompile>
@@ -520,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="..\src\ssdb\iterator.cpp">
       <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\pthread-win32\pthread.c">
+      <Filter>deps</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

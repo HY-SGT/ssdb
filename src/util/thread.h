@@ -87,7 +87,7 @@ class Queue{
 		// TODO: with timeout
 		int pop(T *data);
 };
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 int pipe_create(int* f);
 int pipe_write(int f, const void* data, size_t len);
 int pipe_read(int f, void* data, size_t len);
@@ -113,7 +113,7 @@ class SelectableQueue{
 		int push(const T item);
 		// single reader
 		int pop(T *data);
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 		static int pipe(int* f)
 		{
 			return pipe_create(f);

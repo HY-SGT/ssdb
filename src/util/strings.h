@@ -14,7 +14,7 @@ found in the LICENSE file.
 #include <string>
 #include <algorithm>
 
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #include <stdint.h>
 #define snprintf _snprintf
 #define strtoll _strtoi64

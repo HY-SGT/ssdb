@@ -6,7 +6,7 @@ found in the LICENSE file.
 #ifndef UTIL_FDE_SELECT_H
 #define UTIL_FDE_SELECT_H
 
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 int netError2crtError(int ec);
 #endif
 
@@ -29,8 +29,8 @@ bool Fdevents::isset(int fd, int flag){
 }
 
 int Fdevents::set(int fd, int flags, int data_num, void *data_ptr){
-#if _WIN32 || _WIN64
-	if(fd <= 0){
+#if SSDB_PLATFORM_WINDOWS
+	if(fd <= 0 || events_fd.size() >= FD_SETSIZE){
 #else
 	if(fd > FD_SETSIZE - 1){
 #endif
@@ -99,7 +99,7 @@ const Fdevents::events_t* Fdevents::wait(int timeout_ms){
 		ret = ::select(events_fd.size(), &t_readset, &t_writeset, NULL, NULL);
 	}
 	if(ret < 0){
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 		errno = netError2crtError( GetLastError() );
 #endif
 		if(errno == EINTR){

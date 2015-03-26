@@ -7,7 +7,7 @@ found in the LICENSE file.
 #include <fcntl.h>
 #include <string.h>
 #include <stdarg.h>
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #include <WinSock2.h>
 #include <ws2ipdef.h>
 #include <WS2tcpip.h>
@@ -184,7 +184,7 @@ void Link::keepalive(bool enable){
 
 void Link::noblock(bool enable){
 	noblock_ = enable;
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 	unsigned long async = enable;
 	ioctlsocket(sock, FIONBIO, &async);
 #else

@@ -29,7 +29,7 @@ void signal_handler(int sig){
 			quit = true;
 			break;
 		}
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #else
 		case SIGALRM:{
 			g_ticks ++;
@@ -54,13 +54,13 @@ NetworkServer::NetworkServer(){
 	proc_map.set_proc("ping", "r", proc_ping);
 	proc_map.set_proc("info", "r", proc_info);
 	proc_map.set_proc("auth", "r", proc_auth);
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #else
 	signal(SIGPIPE, SIG_IGN);
 #endif
 	signal(SIGINT, signal_handler);
 	signal(SIGTERM, signal_handler);
-#if _WIN32 || _WIN64
+#if SSDB_PLATFORM_WINDOWS
 #elif !defined(__CYGWIN__)
 	signal(SIGALRM, signal_handler);
 	{

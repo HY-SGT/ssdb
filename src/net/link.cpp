@@ -11,21 +11,109 @@ found in the LICENSE file.
 #include <WinSock2.h>
 #include <ws2ipdef.h>
 #include <WS2tcpip.h>
-int ssdb_net_write(int fd, const void* data, size_t len)
+
+int netError2crtError(int ec)
 {
-	return send(fd, (char*)data, len, 0);
+	switch(ec)
+	{
+	case WSAEWOULDBLOCK:
+		return EWOULDBLOCK;
+	case WSAEINPROGRESS:
+		return EINPROGRESS;
+	case WSAEALREADY:
+		return EALREADY;
+	case WSAENOTSOCK:
+		return ENOTSOCK;
+	case WSAEDESTADDRREQ:
+		return EDESTADDRREQ;
+	case WSAEMSGSIZE:
+		return EMSGSIZE;
+	case WSAEPROTOTYPE:
+		return EPROTOTYPE;
+	case WSAENOPROTOOPT:
+		return ENOPROTOOPT;
+	case WSAEPROTONOSUPPORT:
+		return EPROTONOSUPPORT;
+// 	case WSAESOCKTNOSUPPORT:
+// 		return ESOCKTNOSUPPORT;
+	case WSAEOPNOTSUPP:
+		return EOPNOTSUPP;
+// 	case WSAEPFNOSUPPORT:
+// 		return EPFNOSUPPORT;
+	case WSAEAFNOSUPPORT:
+		return EAFNOSUPPORT;
+	case WSAEADDRINUSE:
+		return EADDRINUSE;
+	case WSAEADDRNOTAVAIL:
+		return EADDRNOTAVAIL;
+	case WSAENETDOWN:
+		return ENETDOWN;
+	case WSAENETUNREACH:
+		return ENETUNREACH;
+	case WSAENETRESET:
+		return ENETRESET;
+	case WSAECONNABORTED:
+		return ECONNABORTED;
+	case WSAECONNRESET:
+		return ECONNRESET;
+	case WSAENOBUFS:
+		return ENOBUFS;
+	case WSAEISCONN:
+		return EISCONN;
+	case WSAENOTCONN:
+		return ENOTCONN;
+// 	case WSAESHUTDOWN:
+//		return ESHUTDOWN;
+// 	case WSAETOOMANYREFS:
+// 		return ETOOMANYREFS;
+	case WSAETIMEDOUT:
+		return ETIMEDOUT;
+	case WSAECONNREFUSED:
+		return ECONNREFUSED;
+	case WSAELOOP:
+		return ELOOP;
+	case WSAENAMETOOLONG:
+		return ENAMETOOLONG;
+// 	case WSAEHOSTDOWN:
+// 		return EHOSTDOWN;
+	case WSAEHOSTUNREACH:
+		return EHOSTUNREACH;
+	case WSAENOTEMPTY:
+		return ENOTEMPTY;
+// 	case WSAEPROCLIM:
+// 		return EPROCLIM;
+// 	case WSAEUSERS:
+// 		return EUSERS;
+// 	case WSAEDQUOT:
+// 		return EDQUOT;
+// 	case WSAESTALE:
+// 		return ESTALE;
+// 	case WSAEREMOTE:
+// 		return EREMOTE;
+
+	case WSAEINTR:
+		return EINTR;
+	default:
+		return ec;
+	}
 }
-int ssdb_net_read(int fd, void* data, size_t len)
+
+int write(int fd, const void* data, size_t len)
 {
-	return recv(fd, (char*)data, len, 0);
+	int ret = send(fd, (char*)data, len, 0);
+	errno = netError2crtError( GetLastError() );
+	return ret;
 }
-void ssdb_net_close(int fd)
+int read(int fd, void* data, size_t len)
+{
+	int ret = recv(fd, (char*)data, len, 0);
+	errno = netError2crtError( GetLastError() );
+	return ret;
+}
+void close(int fd)
 {
 	closesocket(fd);
 }
-#define write ssdb_net_write
-#define read ssdb_net_read
-#define close ssdb_net_close
 
 typedef char* skoptval;
 #define bzero(d,s) memset(d, 0, s)
@@ -33,7 +121,6 @@ typedef char* skoptval;
 typedef void* skoptval;
 #include <sys/socket.h>
 #endif
-
 #include "link.h"
 
 #include "link_redis.cpp"
@@ -217,12 +304,13 @@ int Link::read(){
 		//want = 1;
 		int len = ::read(sock, input->slot(), want);
 		if(len == -1){
-			if(errno == EINTR){
+			int ec = errno;
+			if(ec == EINTR){
 				continue;
-			}else if(errno == EWOULDBLOCK){
+			}else if(ec == EWOULDBLOCK){
 				break;
 			}else{
-				//log_debug("fd: %d, read: -1, want: %d, error: %s", sock, want, strerror(errno));
+				//log_debug("fd: %d, read: -1, want: %d, error: %s", sock, want, strerror(ec));
 				return -1;
 			}
 		}else{

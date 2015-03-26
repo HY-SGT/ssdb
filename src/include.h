@@ -41,9 +41,19 @@ found in the LICENSE file.
 #endif
 
 
-double millitime();
+static inline double millitime(){
+	struct timeval now;
+	gettimeofday(&now, NULL);
+	double ret = now.tv_sec + now.tv_usec/1000.0/1000.0;
+	return ret;
+}
 
-int64_t time_ms();
+static inline int64_t time_ms(){
+	struct timeval now;
+	gettimeofday(&now, NULL);
+	return now.tv_sec * 1000 + now.tv_usec/1000;
+}
+
 
 #endif
 

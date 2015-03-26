@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FAF8D474-46E5-4A21-A695-FBC74F368937}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ssdbserver</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)obj\$(Configuration)</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)obj\$(Configuration)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;LEVELDB_VERSION=9999;PTW32_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;P:\sdk\database\sqlite\sqlite-amalgamation-3080701;P:\sdk\util\pthreads;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;LEVELDB_PLATFORM_WINDOWS;OS_WIN;PTW32_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\deps\snappy-1.1.0;..\deps;..\deps\leveldb-1.14.0\include;..\deps\leveldb-1.14.0;P:\sdk\database\sqlite\sqlite-amalgamation-3080701;P:\sdk\util\pthreads;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\builder.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\dbformat.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_impl.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_iter.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\filename.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_format.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_reader.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_writer.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\memtable.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\skiplist.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\snapshot.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\table_cache.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_edit.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_set.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\write_batch_internal.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\atomic_pointer.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\port.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\port_win.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\block.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\block_builder.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\filter_block.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\format.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\iterator_wrapper.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\merger.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\two_level_iterator.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\arena.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\coding.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\crc32c.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\hash.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\histogram.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\logging.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\mutexlock.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\posix_logger.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\random.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\testharness.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\testutil.h" />
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\win_logger.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-c.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-internal.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-sinksource.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-stubs-internal.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-stubs-public.h" />
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy.h" />
+    <ClInclude Include="..\src\backend_dump.h" />
+    <ClInclude Include="..\src\backend_sync.h" />
+    <ClInclude Include="..\src\include.h" />
+    <ClInclude Include="..\src\net\fde.h" />
+    <ClInclude Include="..\src\net\link.h" />
+    <ClInclude Include="..\src\net\link_redis.h" />
+    <ClInclude Include="..\src\net\proc.h" />
+    <ClInclude Include="..\src\net\resp.h" />
+    <ClInclude Include="..\src\net\server.h" />
+    <ClInclude Include="..\src\net\worker.h" />
+    <ClInclude Include="..\src\serv.h" />
+    <ClInclude Include="..\src\slave.h" />
+    <ClInclude Include="..\src\ssdb\binlog.h" />
+    <ClInclude Include="..\src\ssdb\const.h" />
+    <ClInclude Include="..\src\ssdb\iterator.h" />
+    <ClInclude Include="..\src\ssdb\options.h" />
+    <ClInclude Include="..\src\ssdb\ssdb.h" />
+    <ClInclude Include="..\src\ssdb\ssdb_impl.h" />
+    <ClInclude Include="..\src\ssdb\ttl.h" />
+    <ClInclude Include="..\src\ssdb\t_hash.h" />
+    <ClInclude Include="..\src\ssdb\t_kv.h" />
+    <ClInclude Include="..\src\ssdb\t_queue.h" />
+    <ClInclude Include="..\src\ssdb\t_zset.h" />
+    <ClInclude Include="..\src\util\bytes.h" />
+    <ClInclude Include="..\src\util\config.h" />
+    <ClInclude Include="..\src\util\daemon.h" />
+    <ClInclude Include="..\src\util\file.h" />
+    <ClInclude Include="..\src\util\ip_filter.h" />
+    <ClInclude Include="..\src\util\list.h" />
+    <ClInclude Include="..\src\util\log.h" />
+    <ClInclude Include="..\src\util\platform_win.h" />
+    <ClInclude Include="..\src\util\sorted_set.h" />
+    <ClInclude Include="..\src\util\strings.h" />
+    <ClInclude Include="..\src\util\thread.h" />
+    <ClInclude Include="..\src\version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\util\pthreads\pthread.c" />
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\builder.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\c.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\dbformat.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_impl.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_iter.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\filename.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_reader.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_writer.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\memtable.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\repair.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\table_cache.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_edit.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_set.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\write_batch.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\port\port_win.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\block.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\block_builder.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\filter_block.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\format.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\iterator.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\merger.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\table.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\table_builder.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\two_level_iterator.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\arena.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\bloom.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\cache.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\coding.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\comparator.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\crc32c.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\env.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\env_boost.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\filter_policy.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\hash.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\histogram.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\logging.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\options.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\status.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\testharness.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\testutil.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\win_logger.cc">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)levelDB\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)levelDB\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-c.cc" />
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-sinksource.cc" />
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-stubs-internal.cc" />
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy.cc" />
+    <ClCompile Include="..\src\backend_dump.cpp" />
+    <ClCompile Include="..\src\backend_sync.cpp" />
+    <ClCompile Include="..\src\net\fde.cpp" />
+    <ClCompile Include="..\src\net\link.cpp" />
+    <ClCompile Include="..\src\net\proc.cpp" />
+    <ClCompile Include="..\src\net\resp.cpp" />
+    <ClCompile Include="..\src\net\server.cpp" />
+    <ClCompile Include="..\src\net\worker.cpp" />
+    <ClCompile Include="..\src\proc_hash.cpp" />
+    <ClCompile Include="..\src\proc_kv.cpp" />
+    <ClCompile Include="..\src\proc_queue.cpp" />
+    <ClCompile Include="..\src\proc_zset.cpp" />
+    <ClCompile Include="..\src\serv.cpp" />
+    <ClCompile Include="..\src\slave.cpp" />
+    <ClCompile Include="..\src\ssdb-server.cpp" />
+    <ClCompile Include="..\src\ssdb\binlog.cpp" />
+    <ClCompile Include="..\src\ssdb\iterator.cpp" />
+    <ClCompile Include="..\src\ssdb\options.cpp" />
+    <ClCompile Include="..\src\ssdb\ssdb_impl.cpp" />
+    <ClCompile Include="..\src\ssdb\ttl.cpp" />
+    <ClCompile Include="..\src\ssdb\t_hash.cpp" />
+    <ClCompile Include="..\src\ssdb\t_kv.cpp" />
+    <ClCompile Include="..\src\ssdb\t_queue.cpp" />
+    <ClCompile Include="..\src\ssdb\t_zset.cpp" />
+    <ClCompile Include="..\src\util\bytes.cpp" />
+    <ClCompile Include="..\src\util\config.cpp" />
+    <ClCompile Include="..\src\util\log.cpp" />
+    <ClCompile Include="..\src\util\sorted_set.cpp" />
+    <ClCompile Include="platform_win.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

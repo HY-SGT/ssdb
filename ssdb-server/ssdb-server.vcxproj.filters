@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\ssdb">
+      <UniqueIdentifier>{171c7d74-d8eb-42a2-9a69-60d2379aff8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\util">
+      <UniqueIdentifier>{6861cb45-3b12-48d4-9873-778734972366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps">
+      <UniqueIdentifier>{e22564f9-3243-4d3e-a3d6-ec6130886ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\snappy">
+      <UniqueIdentifier>{f96c0256-8068-43f9-b650-0549f78ba3f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\net">
+      <UniqueIdentifier>{c286c815-0664-4fd2-9406-58751ddc6e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\src">
+      <UniqueIdentifier>{f7e7cede-4e13-4a81-a32f-423201038635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb">
+      <UniqueIdentifier>{6af1da3f-01e1-4bd6-b749-c1a18c3711e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb\db">
+      <UniqueIdentifier>{8191e617-7def-4a76-95d4-2c2cea21d4e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb\helpers">
+      <UniqueIdentifier>{fb151e21-fd34-4344-8cbe-5a6b544f4892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb\port">
+      <UniqueIdentifier>{263efd2c-1a1d-45fd-9576-4e318b7e6ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb\table">
+      <UniqueIdentifier>{4b01e80d-4be7-4fde-a1dd-b60334cc6082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\levelDb\util">
+      <UniqueIdentifier>{0c84a3af-8542-4a92-a543-ea43f6aaec43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-c.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-internal.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-sinksource.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-stubs-internal.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy-stubs-public.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\snappy-1.1.0\snappy.h">
+      <Filter>deps\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\binlog.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\const.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\iterator.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\options.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\ssdb.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\ssdb_impl.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\ttl.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\t_hash.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\t_kv.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\t_queue.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ssdb\t_zset.h">
+      <Filter>源文件\ssdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\bytes.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\config.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\daemon.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\file.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\ip_filter.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\list.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\log.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\sorted_set.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\strings.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\thread.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\fde.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\link.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\link_redis.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\proc.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\resp.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\server.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\net\worker.h">
+      <Filter>源文件\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\backend_dump.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\backend_sync.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\include.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\serv.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\slave.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\version.h">
+      <Filter>源文件\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\arena.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\coding.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\crc32c.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\hash.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\histogram.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\logging.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\mutexlock.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\posix_logger.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\random.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\testharness.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\testutil.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.h">
+      <Filter>deps\levelDb\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\builder.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\dbformat.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_impl.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_iter.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\filename.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_format.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_reader.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_writer.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\memtable.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\skiplist.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\snapshot.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\table_cache.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_edit.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_set.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\db\write_batch_internal.h">
+      <Filter>deps\levelDb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\block.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\block_builder.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\filter_block.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\format.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\iterator_wrapper.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\merger.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\table\two_level_iterator.h">
+      <Filter>deps\levelDb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\port_win.h">
+      <Filter>deps\levelDb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\port.h">
+      <Filter>deps\levelDb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\port\atomic_pointer.h">
+      <Filter>deps\levelDb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\leveldb-1.14.0\util\win_logger.h">
+      <Filter>deps\levelDb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\platform_win.h">
+      <Filter>源文件\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-c.cc">
+      <Filter>deps\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-sinksource.cc">
+      <Filter>deps\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy-stubs-internal.cc">
+      <Filter>deps\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\snappy-1.1.0\snappy.cc">
+      <Filter>deps\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\binlog.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\ssdb_impl.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\ttl.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\t_hash.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\t_kv.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\t_queue.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\t_zset.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\bytes.cpp">
+      <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\config.cpp">
+      <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\log.cpp">
+      <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\sorted_set.cpp">
+      <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\fde.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\proc.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\resp.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\server.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\worker.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\backend_dump.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\backend_sync.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\proc_hash.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\proc_kv.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\proc_queue.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\proc_zset.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\serv.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb-server.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\util\pthreads\pthread.c">
+      <Filter>deps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\slave.cpp">
+      <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\net\link.cpp">
+      <Filter>源文件\net</Filter>
+    </ClCompile>
+    <ClCompile Include="platform_win.cpp">
+      <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\arena.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\bloom.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\cache.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\coding.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\comparator.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\crc32c.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\env.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\filter_policy.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\hash.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\histogram.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\logging.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\options.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\status.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\testharness.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\testutil.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.cc">
+      <Filter>deps\levelDb\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\builder.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\c.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\dbformat.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_impl.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_iter.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\filename.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_reader.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_writer.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\memtable.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\repair.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\table_cache.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_edit.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_set.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\db\write_batch.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\block.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\block_builder.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\filter_block.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\format.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\iterator.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\merger.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\table.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\table_builder.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\table\two_level_iterator.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\port\port_win.cc">
+      <Filter>deps\levelDb\port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\win_logger.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.14.0\util\env_boost.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\options.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ssdb\iterator.cpp">
+      <Filter>源文件\ssdb</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

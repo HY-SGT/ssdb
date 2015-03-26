@@ -5,6 +5,7 @@ found in the LICENSE file.
 */
 #include "resp.h"
 #include <stdio.h>
+#include "../util/strings.h"
 
 int Response::size() const{
 	return (int)resp.size();

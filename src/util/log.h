@@ -6,8 +6,6 @@ found in the LICENSE file.
 #ifndef UTIL_LOG_H
 #define UTIL_LOG_H
 
-#include <inttypes.h>
-#include <unistd.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -20,7 +18,16 @@ found in the LICENSE file.
 #include <assert.h>
 #include <signal.h>
 #include <time.h>
+#if (_WIN32 || _WIN64)
+#include "platform_win.h"
+#ifndef PATH_MAX
+#define PATH_MAX 260
+#endif
+#else
+#include <inttypes.h>
+#include <unistd.h>
 #include <sys/time.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <pthread.h>
@@ -86,7 +93,18 @@ int log_open(const char *filename, int level=Logger::LEVEL_DEBUG,
 int log_level();
 void set_log_level(int level);
 int log_write(int level, const char *fmt, ...);
+int log_writeV(int level, const char *fmt, va_list ap);
 
+#ifndef _SUPPORT_MACRO_ARGS
+#	if _MSC_VER>0 && _MSC_VER<1700
+#		define _SUPPORT_MACRO_ARGS 0
+#	else
+#		define _SUPPORT_MACRO_ARGS	1
+#	endif
+#endif
+
+
+#if _SUPPORT_MACRO_ARGS
 
 #ifdef NDEBUG
 	#define log_trace(fmt, args...) do{}while(0)
@@ -106,5 +124,28 @@ int log_write(int level, const char *fmt, ...);
 #define log_fatal(fmt, args...)	\
 	log_write(Logger::LEVEL_FATAL, "%s(%d): " fmt, __FILE__, __LINE__, ##args)
 
+#else
+	template<int Level>
+	static int log_writeT(const char* fmt, ...){
+		va_list ap;
+		va_start(ap, fmt);
+		int ret = log_writeV(Level, fmt, ap);
+		va_end(ap);
+		return 0;
+	}
+
+#ifdef NDEBUG
+#define log_trace	1?0:
+#else
+#define log_trace log_writeT<Logger::LEVEL_TRACE>
+#endif
+
+#define log_debug log_writeT<Logger::LEVEL_DEBUG>
+#define log_info log_writeT<Logger::LEVEL_INFO>
+#define log_warn log_writeT<Logger::LEVEL_WARN>
+#define log_error log_writeT<Logger::LEVEL_ERROR>
+#define log_fatal log_writeT<Logger::LEVEL_FATAL>
+
+#endif
 
 #endif

@@ -6,15 +6,18 @@ found in the LICENSE file.
 #include "fde.h"
 
 struct Fdevent* Fdevents::get_fde(int fd){
-	while((int)events.size() <= fd){
-		struct Fdevent *fde = new Fdevent();
-		fde->fd = events.size();
-		fde->s_flags = FDEVENT_NONE;
-		fde->data.num = 0;
-		fde->data.ptr = NULL;
-		events.push_back(fde);
+	auto it = events_fd.find(fd);
+	if (it != events_fd.end())
+	{
+		return it->second;
 	}
-	return events[fd];
+	struct Fdevent *fde = new Fdevent();
+	//fde->fd = events.size();
+	fde->s_flags = FDEVENT_NONE;
+	fde->data.num = 0;
+	fde->data.ptr = NULL;
+	events_fd[fd] = fde;
+	return fde;
 }
 
 

@@ -87,7 +87,13 @@ class Queue{
 		// TODO: with timeout
 		int pop(T *data);
 };
-
+#if _WIN32 || _WIN64
+int pipe_create(int* f);
+int pipe_write(int f, const void* data, size_t len);
+int pipe_read(int f, void* data, size_t len);
+int pipe_close(int f);
+#else
+#endif
 
 // Selectable queue, multi writers, single reader
 template <class T>
@@ -107,6 +113,25 @@ class SelectableQueue{
 		int push(const T item);
 		// single reader
 		int pop(T *data);
+#if _WIN32 || _WIN64
+		static int pipe(int* f)
+		{
+			return pipe_create(f);
+		}
+		static int write(int f, const void* data, size_t len)
+		{
+			return pipe_write(f, data, len);
+		}
+		static int read(int f, void* data, size_t len)
+		{
+			return pipe_read(f, data, len);
+		}
+		static int close(int f)
+		{
+			return pipe_close(f);
+		}
+#endif
+
 };
 
 template<class W, class JOB>
@@ -256,7 +281,7 @@ int SelectableQueue<T>::push(const T item){
 	{
 		items.push(item);
 	}
-	if(::write(fds[1], "1", 1) == -1){
+	if(write(fds[1], "1", 1) == -1){
 		exit(0);
 	}
 	pthread_mutex_unlock(&mutex);
@@ -269,7 +294,7 @@ int SelectableQueue<T>::pop(T *data){
 	char buf[1];
 
 	while(1){
-		n = ::read(fds[0], buf, 1);
+		n = read(fds[0], buf, 1);
 		if(n < 0){
 			if(errno == EINTR){
 				continue;

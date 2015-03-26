@@ -6,17 +6,20 @@ found in the LICENSE file.
 #ifndef UTIL_FDE_SELECT_H
 #define UTIL_FDE_SELECT_H
 
+#if _WIN32 || _WIN64
+int netError2crtError(int ec);
+#endif
+
 Fdevents::Fdevents(){
-	maxfd = -1;
 	FD_ZERO(&readset);
 	FD_ZERO(&writeset);
 }
 
 Fdevents::~Fdevents(){
-	for(size_t i=0; i<events.size(); i++){
-		delete events[i];
+	for(auto it = events_fd.begin(); it != events_fd.end(); ++it){
+		delete it->second;
 	}
-	events.clear();
+	events_fd.clear();
 	ready_events.clear();
 }
 
@@ -26,7 +29,11 @@ bool Fdevents::isset(int fd, int flag){
 }
 
 int Fdevents::set(int fd, int flags, int data_num, void *data_ptr){
+#if _WIN32 || _WIN64
+	if(fd <= 0){
+#else
 	if(fd > FD_SETSIZE - 1){
+#endif
 		return -1;
 	}
 
@@ -41,7 +48,6 @@ int Fdevents::set(int fd, int flags, int data_num, void *data_ptr){
 	fde->data.num = data_num;
 	fde->data.ptr = data_ptr;
 	fde->s_flags |= flags;
-	maxfd = fd > maxfd? fd: maxfd;
 
 	return 0;
 }
@@ -50,26 +56,28 @@ int Fdevents::del(int fd){
 	FD_CLR(fd, &readset);
 	FD_CLR(fd, &writeset);
 
-	struct Fdevent *fde = get_fde(fd);
-	fde->s_flags = FDEVENT_NONE;
-	while(maxfd >= 0 && this->events[maxfd]->s_flags == 0){
-		maxfd --;
+	auto it = events_fd.find(fd);
+	if (it != events_fd.end())
+	{
+		events_fd.erase(it);
 	}
 	return 0;
 }
 
 int Fdevents::clr(int fd, int flags){
-	struct Fdevent *fde = get_fde(fd);
-	if(!(fde->s_flags & flags)){
-		return 0;
-	}
 	if(flags & FDEVENT_IN)  FD_CLR(fd, &readset);
 	if(flags & FDEVENT_OUT) FD_CLR(fd, &writeset);
 
-	fde->s_flags &= ~flags;
-	while(this->events[maxfd]->s_flags == 0){
-		maxfd --;
+	auto it = events_fd.find(fd);
+	if (it != events_fd.end())
+	{
+		it->second->s_flags &= ~flags;
+		if (it->second->s_flags == 0)
+		{
+			events_fd.erase(it);
+		}
 	}
+
 	return 0;
 }
 
@@ -86,11 +94,14 @@ const Fdevents::events_t* Fdevents::wait(int timeout_ms){
 	if(timeout_ms >= 0){
 		tv.tv_sec =  timeout_ms / 1000;
 		tv.tv_usec = (timeout_ms % 1000) * 1000;
-		ret = ::select(maxfd + 1, &t_readset, &t_writeset, NULL, &tv);
+		ret = ::select(events_fd.size(), &t_readset, &t_writeset, NULL, &tv);
 	}else{
-		ret = ::select(maxfd + 1, &t_readset, &t_writeset, NULL, NULL);
+		ret = ::select(events_fd.size(), &t_readset, &t_writeset, NULL, NULL);
 	}
 	if(ret < 0){
+#if _WIN32 || _WIN64
+		errno = netError2crtError( GetLastError() );
+#endif
 		if(errno == EINTR){
 			return &ready_events;
 		}
@@ -98,15 +109,16 @@ const Fdevents::events_t* Fdevents::wait(int timeout_ms){
 	}
 
 	if(ret > 0){
-		for(i = 0; i <= maxfd && (int)ready_events.size() < ret; i++){
-			fde = this->events[i];
-
+		for (auto it = events_fd.begin(); it != events_fd.end() && ret>0; ++it)
+		{
+			fde = it->second;
 			fde->events = FDEVENT_NONE;
-			if(FD_ISSET(i, &t_readset))  fde->events |= FDEVENT_IN;
-			if(FD_ISSET(i, &t_writeset)) fde->events |= FDEVENT_OUT;
+			if(FD_ISSET(it->first, &t_readset))  fde->events |= FDEVENT_IN;
+			if(FD_ISSET(it->first, &t_writeset)) fde->events |= FDEVENT_OUT;
 
 			if(fde->events){
-				ready_events.push_back(fde);
+				ready_events[it->first] = it->second;
+				--ret;
 			}
 		}
 	}

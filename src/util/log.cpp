@@ -23,6 +23,10 @@ void set_log_level(int level){
 	logger.set_level(level);
 }
 
+int log_writeV(int level, const char *fmt, va_list ap){
+	return logger.logv(level, fmt, ap);
+}
+
 int log_write(int level, const char *fmt, ...){
 	va_list ap;
 	va_start(ap, fmt);

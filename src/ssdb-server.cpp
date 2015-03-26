@@ -16,6 +16,28 @@ found in the LICENSE file.
 #include "net/server.h"
 #include "ssdb/ssdb.h"
 #include "serv.h"
+#if _WIN32 || _WIN64
+#include <process.h>
+int kill(int pid, int code)
+{
+	errno = ESRCH;
+	return -1;
+}
+#else
+double millitime(){
+	struct timeval now;
+	gettimeofday(&now, NULL);
+	double ret = now.tv_sec + now.tv_usec/1000.0/1000.0;
+	return ret;
+}
+
+int64_t time_ms(){
+	struct timeval now;
+	gettimeofday(&now, NULL);
+	return now.tv_sec * 1000 + now.tv_usec/1000;
+}
+
+#endif
 
 struct AppArgs{
 	bool is_daemon;
@@ -49,6 +71,10 @@ void remove_pidfile();
 void kill_process();
 
 int main(int argc, char **argv){
+#if _WIN32 || _WIN64
+	WSADATA wsadata={0};
+	WSAStartup(MAKEWORD(2,2), &wsadata);
+#endif
 	welcome();
 	parse_args(argc, argv);
 	init();
@@ -231,7 +257,7 @@ void init(){
 
 void check_pidfile(){
 	if(app_args.pidfile.size()){
-		if(access(app_args.pidfile.c_str(), F_OK) == 0){
+		if(file_exists(app_args.pidfile)){
 			fprintf(stderr, "Fatal error!\nPidfile %s already exists!\n"
 				"Kill the running process before you run this command,\n"
 				"or use '-s restart' option to restart the server.\n",

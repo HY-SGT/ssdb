@@ -10,6 +10,10 @@ found in the LICENSE file.
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string>
+#if _WIN32 || _WIN64
+#define S_ISDIR(x)	((x) & S_IFDIR)
+#define S_ISREG(x)	((x) & S_IFREG)
+#endif
 
 static inline
 bool file_exists(const std::string &filename){

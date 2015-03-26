@@ -9,6 +9,7 @@ found in the LICENSE file.
 #include <vector>
 #include "log.h"
 #include "sorted_set.h"
+#include "strings.h"
 
 int main(int argc, char **argv){	
 	SortedSet zset;
@@ -28,11 +29,11 @@ int main(int argc, char **argv){
 	}
 	log_debug("");
 	
-	const std::string *key;
+	std::string key;
 	int64_t score;
 	int n = 0;
 	while(zset.front(&key, &score)){
-		printf("%s : %4lld\n", key->c_str(), score);
+		printf("%s : %4lld\n", key.c_str(), score);
 		zset.pop_front();
 		n ++;
 	}

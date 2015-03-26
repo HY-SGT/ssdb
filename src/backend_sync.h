@@ -16,6 +16,13 @@ found in the LICENSE file.
 #include "net/link.h"
 #include "util/thread.h"
 
+#if _WIN32 || _WIN64
+static bool operator <(const pthread_t &left, const pthread_t &right)
+{
+	return memcmp(&left, &right, sizeof(pthread_t)) < 0;
+}
+#endif
+
 class BackendSync{
 private:
 	struct Client;

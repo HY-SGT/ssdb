@@ -29,10 +29,13 @@ void signal_handler(int sig){
 			quit = true;
 			break;
 		}
+#if _WIN32 || _WIN64
+#else
 		case SIGALRM:{
 			g_ticks ++;
 			break;
 		}
+#endif
 	}
 }
 
@@ -51,11 +54,14 @@ NetworkServer::NetworkServer(){
 	proc_map.set_proc("ping", "r", proc_ping);
 	proc_map.set_proc("info", "r", proc_info);
 	proc_map.set_proc("auth", "r", proc_auth);
-
+#if _WIN32 || _WIN64
+#else
 	signal(SIGPIPE, SIG_IGN);
+#endif
 	signal(SIGINT, signal_handler);
 	signal(SIGTERM, signal_handler);
-#ifndef __CYGWIN__
+#if _WIN32 || _WIN64
+#elif !defined(__CYGWIN__)
 	signal(SIGALRM, signal_handler);
 	{
 		struct itimerval tv;
@@ -206,8 +212,8 @@ void NetworkServer::serve(){
 			break;
 		}
 		
-		for(int i=0; i<(int)events->size(); i++){
-			const Fdevent *fde = events->at(i);
+		for(auto it = events->begin(); it != events->end(); ++it){
+			const Fdevent *fde = it->second;
 			if(fde->data.ptr == serv_link){
 				Link *link = accept_link();
 				if(link){
@@ -296,6 +302,7 @@ Link* NetworkServer::accept_link(){
 
 int NetworkServer::proc_result(ProcJob *job, ready_list_t *ready_list){
 	Link *link = job->link;
+	assert(link);
 	int len;
 			
 	if(job->cmd){

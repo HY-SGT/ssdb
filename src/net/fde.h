@@ -20,7 +20,7 @@ found in the LICENSE file.
 #define FDEVENT_ERR		(1<<4)
 
 struct Fdevent{
-	int fd;
+	//int fd;
 	int s_flags; // subscribed events
 	int events;	 // ready events
 	struct{
@@ -32,6 +32,9 @@ struct Fdevent{
 #include <vector>
 #ifdef HAVE_EPOLL
 	#include <sys/epoll.h>
+#elif _WIN32 || WIN64
+#include <WinSock2.h>
+#include <map>
 #else
 	#include <sys/select.h>
 #endif
@@ -39,18 +42,17 @@ struct Fdevent{
 
 class Fdevents{
 	public:
-		typedef std::vector<struct Fdevent *> events_t;
+		typedef std::map<int,struct Fdevent *> events_t;
 	private:
 #ifdef HAVE_EPOLL
 		static const int MAX_FDS = 8 * 1024;
 		int ep_fd;
 		struct epoll_event ep_events[MAX_FDS];
 #else
-		int maxfd;
 		fd_set readset;
 		fd_set writeset;
 #endif
-		events_t events;
+		events_t events_fd;
 		events_t ready_events;
 
 		struct Fdevent *get_fde(int fd);

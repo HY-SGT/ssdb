@@ -20,7 +20,14 @@ found in the LICENSE file.
 #include <assert.h>
 #include <signal.h>
 #include <time.h>
+#if _WIN32 || _WIN64
+#include "util/platform_win.h"
+#define sleep(x)	_sleep( (x)*1000 )
+#define usleep(x)	_sleep( (x)/1000 );
+
+#else
 #include <sys/time.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -34,18 +41,9 @@ found in the LICENSE file.
 #endif
 
 
-static inline double millitime(){
-	struct timeval now;
-	gettimeofday(&now, NULL);
-	double ret = now.tv_sec + now.tv_usec/1000.0/1000.0;
-	return ret;
-}
+double millitime();
 
-static inline int64_t time_ms(){
-	struct timeval now;
-	gettimeofday(&now, NULL);
-	return now.tv_sec * 1000 + now.tv_usec/1000;
-}
+int64_t time_ms();
 
 #endif
 

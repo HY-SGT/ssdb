@@ -31,3 +31,5 @@ api/php/c.php
 api/java/Test.java
 src/util/test_sorted_set
 
+/ssdb-server-win/out
+/ssdb-server-win/obj

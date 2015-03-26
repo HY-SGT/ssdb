@@ -33,3 +33,4 @@ src/util/test_sorted_set
 
 /ssdb-server-win/out
 /ssdb-server-win/obj
+/ssdb-server-win/*.suo

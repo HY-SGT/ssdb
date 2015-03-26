@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -127,7 +127,7 @@ class Buffer{
 		Buffer(int total);
 		~Buffer();
 
-		int total() const{ // 缓冲区大小
+		int total() const{ /* 缓冲区大小 */
 			return total_;
 		}
 
@@ -135,7 +135,7 @@ class Buffer{
 			return size_ == 0;
 		}
 
-		// 数据
+		/* 数据 */
 		char* data() const{
 			return data_;
 		}
@@ -161,9 +161,9 @@ class Buffer{
 			data_ += num;
 		}
 
-		// 保证不改变后半段的数据, 以便使已生成的 Bytes 不失效.
+		/* 保证不改变后半段的数据, 以便使已生成的 Bytes 不失效. */
 		void nice();
-		// 扩大缓冲区
+		/* 扩大缓冲区 */
 		int grow();
 
 		std::string stats() const;

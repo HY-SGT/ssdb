@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -376,7 +376,7 @@ std::string substr(const std::string &str, int start, int size){
 		start = str.size() + start;
 	}
 	if(size < 0){
-		// 忽略掉 abs(size) 个字节
+		/* 忽略掉 abs(size) 个字节 */
 		size = (str.size() + size) - start;
 	}
 	if(start < 0 || size_t(start) >= str.size() || size < 0){

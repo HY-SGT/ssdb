@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -17,14 +17,14 @@ Buffer::~Buffer(){
 }
 
 void Buffer::nice(){
-	// 保证不改变后半段的数据, 以便使已生成的 Bytes 不失效.
+	/* 保证不改变后半段的数据, 以便使已生成的 Bytes 不失效. */
 	if(data_ - buf > total_/2){
 		memcpy(buf, data_, size_);
 		data_ = buf;
 	}
 }
 
-int Buffer::grow(){ // 扩大缓冲区
+int Buffer::grow(){ /* 扩大缓冲区 */
 	int n;
 	if(total_ < 8 * 1024){
 		n = 8 * 1024;

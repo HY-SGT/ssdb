@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -236,7 +236,7 @@ int Queue<T>::pop(T *data){
 		return -1;
 	}
 	{
-		// 必须放在循环中, 因为 pthread_cond_wait 可能抢不到锁而被其它处理了
+		/* 必须放在循环中, 因为 pthread_cond_wait 可能抢不到锁而被其它处理了 */
 		while(items.empty()){
 			//fprintf(stderr, "%d wait\n", pthread_self());
 			if(pthread_cond_wait(&cond, &mutex) != 0){

@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -384,7 +384,7 @@ const std::vector<Bytes>* Link::recv(){
 		return &this->recv_data;
 	}
 
-	// TODO: 记住上回的解析状态
+	/* TODO: 记住上回的解析状态 */
 	int parsed = 0;
 	int size = input->size();
 	char *head = input->data();

@@ -7,7 +7,7 @@ namespace ssdb{
 inline static
 Status _read_list(const std::vector<std::string> *resp, std::vector<std::string> *ret){
 	Status s(resp);
-	if(s.ok()){
+	if(s.ok() && ret){
 		std::vector<std::string>::const_iterator it;
 		for(it = resp->begin() + 1; it != resp->end(); it++){
 			ret->push_back(*it);
@@ -21,7 +21,9 @@ Status _read_int64(const std::vector<std::string> *resp, int64_t *ret){
 	Status s(resp);
 	if(s.ok()){
 		if(resp->size() >= 2){
-			*ret = str_to_int64(resp->at(1));
+			if (ret) {
+				*ret = str_to_int64(resp->at(1));
+			}
 		}else{
 			return Status("server_error");
 		}
@@ -34,10 +36,21 @@ Status _read_str(const std::vector<std::string> *resp, std::string *ret){
 	Status s(resp);
 	if(s.ok()){
 		if(resp->size() >= 2){
-			*ret = resp->at(1);
+			if(ret) {
+				*ret = resp->at(1);
+			}
 		}else{
 			return Status("server_error");
 		}
+	}
+	return s;
+}
+inline static
+Status _read_bool(const std::vector<std::string> *resp, bool *ret){
+	int64_t tmp = 0;
+	Status s = _read_int64(resp, &tmp);
+	if (ret) {
+		*ret = tmp!=0;
 	}
 	return s;
 }
@@ -492,18 +505,6 @@ Status ClientImpl::multi_zdel(const std::string &name, const std::vector<std::st
 	return s;
 }
 
-Status ClientImpl::qpush(const std::string &key, const std::string &val){
-	const std::vector<std::string> *resp;
-	resp = this->request("qpush", key, val);
-	Status s(resp);
-	return s;
-}
-
-Status ClientImpl::qpop(const std::string &key, std::string *val){
-	const std::vector<std::string> *resp;
-	resp = this->request("qpop", key);
-	return _read_str(resp, val);
-}
 
 Status ClientImpl::qslice(const std::string &name,
 		int64_t begin, int64_t end,
@@ -515,5 +516,86 @@ Status ClientImpl::qslice(const std::string &name,
 	resp = this->request("qslice", name, s_begin, s_end);
 	return _read_list(resp, ret);
 }
+
+Status ClientImpl::qsize(const std::string &key, int64_t* ret){
+	const std::vector<std::string>* resp = this->request("qsize", key);
+	return _read_int64(resp, ret);
+}
+Status ClientImpl::qfront(const std::string &key, std::string* ret){
+	const std::vector<std::string>* resp = this->request("qfront", key);
+	return _read_str(resp, ret);
+}
+Status ClientImpl::qback(const std::string &key, std::string* ret){
+	const std::vector<std::string>* resp = this->request("qback", key);
+	return _read_str(resp, ret);
+}
+Status ClientImpl::qpush_front(const std::string& key, const std::string &val, int64_t* newSize){
+	const std::vector<std::string>* resp = this->request("qpush_front", key, val);
+	return _read_int64(resp, newSize);
+}
+Status ClientImpl::qpush_back(const std::string& key, const std::string &val, int64_t* newSize){
+	const std::vector<std::string>* resp = this->request("qpush_back", key, val);
+	return _read_int64(resp, newSize);
+}
+Status ClientImpl::qpop_front(const std::string& key, std::string* ret){
+	const std::vector<std::string>* resp = this->request("qpop_front", key);
+	return _read_str(resp, ret);
+}
+Status ClientImpl::qpop_back(const std::string& key, std::string* ret){
+	const std::vector<std::string>* resp = this->request("qpop_back", key);
+	return _read_str(resp, ret);
+}
+Status ClientImpl::qtrim_front(const std::string& key, int64_t size, int64_t* removed){
+	const std::vector<std::string>* resp = this->request("qtrim_front", key, str(size));
+	return _read_int64(resp, removed);
+}
+Status ClientImpl::qtrim_back(const std::string& key, int64_t size, int64_t* removed){
+	const std::vector<std::string>* resp = this->request("qtrim_back", key, str(size));
+	return _read_int64(resp, removed);
+}
+Status ClientImpl::qget(const std::string& key, int64_t index, std::string* ret){
+	const std::vector<std::string>* resp = this->request("qget", key, str(index));
+	return _read_str(resp, ret);
+}
+Status ClientImpl::qset(const std::string& key, int64_t index, const std::string& val){
+	const std::vector<std::string>* resp = this->request("qset", key, str(index));
+	Status s(resp);
+	return s;
+}
+Status ClientImpl::qclear(const std::string& key) {
+	const std::vector<std::string>* resp = this->request("qset", key);
+	Status s(resp);
+	return s;
+}
+Status ClientImpl::qrange(const std::string& key, int64_t offset, int64_t limit, std::vector<std::string>* ret){
+	const std::vector<std::string>* resp = this->request("qrange", key, str(offset), str(limit));
+	return _read_list(resp, ret);
+}
+
+Status ClientImpl::exists(const std::string &key, bool *ret){
+	const std::vector<std::string>* resp = this->request("exists", key);
+	return _read_bool(resp, ret);
+}
+Status ClientImpl::expire(const std::string &key, int64_t ttl){
+	const std::vector<std::string>* resp = this->request("expire", key, str(ttl));
+	Status s(resp);
+	return s;
+}
+Status ClientImpl::getset(const std::string &key, const std::string& value, std::string* oldval) {
+	const std::vector<std::string>* resp = this->request("getset", key, value);
+	return _read_str(resp, oldval);
+}
+Status ClientImpl::hexists(const std::string& name, const std::string& key, bool *ret) {
+	const std::vector<std::string>* resp = this->request("qset", name, key);
+	return _read_bool(resp, ret);
+}
+
+Status ClientImpl::zexists(const std::string &name, const std::string& key, bool *ret)
+{
+	auto resp = this->request("zexists", name, key);
+	return _read_bool(resp, ret);
+}
+
+
 
 }; // namespace ssdb

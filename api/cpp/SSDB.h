@@ -97,6 +97,10 @@ public:
 	virtual Status setx(const std::string &key, const std::string &val, int ttl) = 0;
 	virtual Status del(const std::string &key) = 0;
 	virtual Status incr(const std::string &key, int64_t incrby, int64_t *ret) = 0;
+	virtual Status exists(const std::string &key, bool *ret) = 0;
+	virtual Status expire(const std::string &key, int64_t ttl) = 0;
+	virtual Status getset(const std::string &key, const std::string& value, std::string* oldval) = 0;
+
 	/**
 	 * @param key_start Empty string means no limit.
 	 * @param key_end Empty string means no limit.
@@ -132,6 +136,7 @@ public:
 	virtual Status hdel(const std::string &name, const std::string &key) = 0;
 	virtual Status hincr(const std::string &name, const std::string &key, int64_t incrby, int64_t *ret) = 0;
 	virtual Status hsize(const std::string &name, int64_t *ret) = 0;
+	virtual Status hexists(const std::string& name, const std::string& key, bool *ret) = 0;
 	/**
 	 * Delete all of the keys in a hashmap, return the number of keys deleted.
 	 */
@@ -175,6 +180,8 @@ public:
 	virtual Status zdel(const std::string &name, const std::string &key) = 0;
 	virtual Status zincr(const std::string &name, const std::string &key, int64_t incrby, int64_t *ret) = 0;
 	virtual Status zsize(const std::string &name, int64_t *ret) = 0;
+	virtual Status zexists(const std::string& name, const std::string& key, bool* ret) = 0;
+
 	/**
 	 * Delete all of the keys in a zset, return the number of keys deleted.
 	 */
@@ -230,9 +237,26 @@ public:
 	virtual Status multi_zdel(const std::string &name, const std::vector<std::string> &keys) = 0;
 	/// @}
 
-	virtual Status qpush(const std::string &key, const std::string &val) = 0;
-	virtual Status qpop(const std::string &key, std::string *val) = 0;
+	virtual Status qpush(const std::string &key, const std::string &val, int64_t* newSize = NULL) {
+		return qpush_back(key, val, newSize);
+	}
+	virtual Status qpop(const std::string &key, std::string *val) {
+		return qpop_front(key,val);
+	}
 	virtual Status qslice(const std::string &name, int64_t begin, int64_t end, std::vector<std::string> *ret) = 0;
+	virtual Status qsize(const std::string &key, int64_t* ret) = 0;
+	virtual Status qfront(const std::string &key, std::string* ret) = 0;
+	virtual Status qback(const std::string &key, std::string* ret) = 0;
+	virtual Status qpush_front(const std::string& key, const std::string &val, int64_t* newSize = NULL) = 0;
+	virtual Status qpush_back(const std::string& key, const std::string &val, int64_t* newSize = NULL) = 0;
+	virtual Status qpop_front(const std::string& key, std::string* ret) = 0;
+	virtual Status qpop_back(const std::string& key, std::string* ret) = 0;
+	virtual Status qtrim_front(const std::string& key, int64_t size, int64_t* removed = NULL) = 0;
+	virtual Status qtrim_back(const std::string& key, int64_t size, int64_t* removed = NULL) = 0;
+	virtual Status qget(const std::string& key, int64_t index, std::string* ret) = 0;
+	virtual Status qset(const std::string& key, int64_t index, const std::string& val) = 0;
+	virtual Status qclear(const std::string& key) = 0;
+	virtual Status qrange(const std::string& key, int64_t offset, int64_t limit, std::vector<std::string>* ret) = 0;
 private:
 	// No copying allowed
 	Client(const Client&);

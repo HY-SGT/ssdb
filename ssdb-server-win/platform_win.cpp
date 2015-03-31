@@ -30,7 +30,7 @@ int pipe_create(int* f)
 			ULONG async = 1;
 			ioctlsocket(client, FIONBIO, &async);
 			ret = connect(client, (sockaddr*)&addr, sizeof(addr));
-			if (ret ==0 || GetLastError() == WSAEWOULDBLOCK)
+			if (ret == 0 || GetLastError() == WSAEWOULDBLOCK)
 			{
 				sockaddr tmp;
 				int tmplen = sizeof(tmp);
@@ -67,12 +67,13 @@ int pipe_read(int f, void* data, size_t len)
 }
 int pipe_close(int f)
 {
-	if (f<=0)
+	if (f <= 0)
 	{
 		return 0;
 	}
 	return closesocket(f);
 }
+
 //////////////////////////////////////////////////////////////////////////
 #define EPOCH_BIAS 116444736000000000LL
 int gettimeofday(struct timeval* tv, void* tzv )

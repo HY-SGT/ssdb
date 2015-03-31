@@ -12,6 +12,32 @@ found in the LICENSE file.
 #include <ws2ipdef.h>
 #include <WS2tcpip.h>
 
+const char* inet_ntop_2k(int af, void* src, char* dst, int cnt)
+{
+	struct sockaddr_in srcaddr;
+
+	memset(&srcaddr, 0, sizeof(struct sockaddr_in));
+	memcpy(&(srcaddr.sin_addr), src, sizeof(srcaddr.sin_addr));
+
+	srcaddr.sin_family = af;
+	if (WSAAddressToStringA((struct sockaddr*) &srcaddr, sizeof(struct sockaddr_in), 0, dst, (LPDWORD) &cnt) != 0)
+	{
+		return nullptr;
+	}
+	return dst;
+}
+int inet_pton_2k(int af, const char* src, void* dst)
+{
+	sockaddr_in dstaddr;
+	int dstlen = sizeof(sockaddr);
+	int ret = WSAStringToAddressA((char*)src, af, NULL, (sockaddr*)&dstaddr, &dstlen);
+	memcpy(dst, &dstaddr.sin_addr, sizeof(dstaddr.sin_addr));
+	return ret;
+}
+
+#define inet_ntop inet_ntop_2k
+#define inet_pton inet_pton_2k
+
 int netError2crtError(int ec)
 {
 	switch(ec)

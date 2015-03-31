@@ -585,6 +585,10 @@ Status ClientImpl::getset(const std::string &key, const std::string& value, std:
 	const std::vector<std::string>* resp = this->request("getset", key, value);
 	return _read_str(resp, oldval);
 }
+Status ClientImpl::ttl(const std::string &key, int64_t* ret) {
+	const std::vector<std::string>* resp = this->request("ttl", key);
+	return _read_int64(resp, ret);
+}
 Status ClientImpl::hexists(const std::string& name, const std::string& key, bool *ret) {
 	const std::vector<std::string>* resp = this->request("qset", name, key);
 	return _read_bool(resp, ret);

@@ -100,6 +100,7 @@ public:
 	virtual Status exists(const std::string &key, bool *ret) = 0;
 	virtual Status expire(const std::string &key, int64_t ttl) = 0;
 	virtual Status getset(const std::string &key, const std::string& value, std::string* oldval) = 0;
+	virtual Status ttl(const std::string &key, int64_t* ret) = 0;
 
 	/**
 	 * @param key_start Empty string means no limit.

@@ -44,6 +44,7 @@ public:
 	virtual Status exists(const std::string &key, bool *ret);
 	virtual Status expire(const std::string &key, int64_t ttl);
 	virtual Status getset(const std::string &key, const std::string& value, std::string* oldval);
+	virtual Status ttl(const std::string& key, int64_t* ret);
 	
 	virtual Status hget(const std::string &name, const std::string &key, std::string *val);
 	virtual Status hset(const std::string &name, const std::string &key, const std::string &val);

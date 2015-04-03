@@ -4,4 +4,4 @@
 #endif
 #endif
 #include <stdlib.h>
-//#include <jemalloc/jemalloc.h>
+#include <jemalloc/jemalloc.h>

@@ -56,6 +56,24 @@ void check_pidfile();
 void remove_pidfile();
 void kill_process();
 
+
+#if SSDB_PLATFORM_WINDOWS
+#include "version.h"
+void* operator new(size_t len){
+	if(len) {
+		return je_malloc(len);
+	}
+	return NULL;
+}
+void operator delete(void* p)
+{
+	if (p)
+	{
+		je_free(p);
+	}
+}
+#endif
+
 int main(int argc, char **argv){
 #if SSDB_PLATFORM_WINDOWS
 	WSADATA wsadata={0};

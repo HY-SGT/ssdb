@@ -49,6 +49,9 @@
     <Filter Include="deps\levelDb\util">
       <UniqueIdentifier>{0c84a3af-8542-4a92-a543-ea43f6aaec43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\jemalloc">
+      <UniqueIdentifier>{af83e2dc-b1e7-4eb2-83c1-f0e620fba278}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -520,6 +523,78 @@
     </ClCompile>
     <ClCompile Include="..\deps\pthread-win32\pthread.c">
       <Filter>deps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\arena.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\atomic.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\base.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\bitmap.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\chunk.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\chunk_dss.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\chunk_mmap.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\ckh.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\ctl.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\extent.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\hash.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\huge.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\jemalloc.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\mb.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\mutex.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\prof.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\quarantine.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\rtree.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\stats.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\tcache.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\tsd.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\util.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\win_sbrk.c">
+      <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\jemalloc-win32\src\zone.c">
+      <Filter>deps\jemalloc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

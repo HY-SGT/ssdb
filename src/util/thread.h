@@ -88,10 +88,10 @@ class Queue{
 		int pop(T *data);
 };
 #if SSDB_PLATFORM_WINDOWS
-int pipe_create(int* f);
-int pipe_write(int f, const void* data, size_t len);
-int pipe_read(int f, void* data, size_t len);
-int pipe_close(int f);
+int notifySock_create(int* f);
+int notifySock_write(int f, const void* data, size_t len);
+int notifySock_read(int f, void* data, size_t len);
+int notifySock_close(int f);
 #else
 #endif
 
@@ -116,19 +116,19 @@ class SelectableQueue{
 #if SSDB_PLATFORM_WINDOWS
 		static int pipe(int* f)
 		{
-			return pipe_create(f);
+			return notifySock_create(f);
 		}
 		static int write(int f, const void* data, size_t len)
 		{
-			return pipe_write(f, data, len);
+			return notifySock_write(f, data, len);
 		}
 		static int read(int f, void* data, size_t len)
 		{
-			return pipe_read(f, data, len);
+			return notifySock_read(f, data, len);
 		}
 		static int close(int f)
 		{
-			return pipe_close(f);
+			return notifySock_close(f);
 		}
 #endif
 

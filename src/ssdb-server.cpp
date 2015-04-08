@@ -18,11 +18,7 @@ found in the LICENSE file.
 #include "serv.h"
 #if SSDB_PLATFORM_WINDOWS
 #include <process.h>
-int kill(int pid, int code)
-{
-	errno = ESRCH;
-	return -1;
-}
+int kill(int pid, int code);
 #endif
 
 struct AppArgs{
@@ -65,10 +61,21 @@ void* operator new(size_t len){
 	}
 	return NULL;
 }
+void* operator new[](size_t len){
+	if(len) {
+		return je_malloc(len);
+	}
+	return NULL;
+}
 void operator delete(void* p)
 {
 	if (p)
 	{
+		je_free(p);
+	}
+}
+void operator delete[](void* p){
+	if(p) {
 		je_free(p);
 	}
 }

@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <windows.h>
 
-int pipe_create(int* f)
+int notifySock_create(int* f)
 {
 	SOCKET server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (server <= 0)
@@ -52,20 +52,20 @@ int pipe_create(int* f)
 
 }
 
-int pipe_write(int f, const void* data, size_t len)
+int notifySock_write(int f, const void* data, size_t len)
 {
 	int ret = send(f, (const char*)data, len, 0);
 	errno = netError2crtError(GetLastError());
 	return ret;
 }
-int pipe_read(int f, void* data, size_t len)
+int notifySock_read(int f, void* data, size_t len)
 {
 	int ret = recv(f, (char*)data, len, 0);
 	errno = netError2crtError(GetLastError());
 	return ret;
 
 }
-int pipe_close(int f)
+int notifySock_close(int f)
 {
 	if (f <= 0)
 	{
@@ -89,6 +89,116 @@ int gettimeofday(struct timeval* tv, void* tzv )
 
 	return (0);
 }
+//////////////////////////////////////////////////////////////////////////
+#include <signal.h>
+#include <errno.h>
 
+void my_signal_run_one()
+{
+	char pipename[64];
+	sprintf(pipename, "\\\\.\\pipe\\_signal_pipe:%d", GetCurrentProcessId());
+	HANDLE hPipe = CreateNamedPipeA(pipename,
+		PIPE_ACCESS_DUPLEX | FILE_FLAG_WRITE_THROUGH,
+		PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+		PIPE_UNLIMITED_INSTANCES,
+		0, 0, 0, NULL);
+	int ec = GetLastError();
+	if (hPipe == INVALID_HANDLE_VALUE)
+	{
+		int ec = GetLastError();
+		return;
+	}
+	if( !ConnectNamedPipe(hPipe, NULL) )
+	{
+		int ec = GetLastError();
+		return;
+	}
+	while (true)
+	{
+		char line[128];
+		DWORD readBytes = 0;
+		int ret = ReadFile(hPipe, line, sizeof(line) - 1, &readBytes, NULL);
+		int ec = GetLastError();
+		if (readBytes <= 0)
+		{
+			//assert(ec == ERROR_BROKEN_PIPE);
+			break;
+		}
+		if(readBytes > 0)
+		{
+			line[readBytes] = '\0';
+			line[sizeof(line) - 1] = '\0';
+			int arg1 = 0;
+			DWORD writeBytes = 0;
+			if( sscanf_s(line, "kill %d\n", &arg1) == 1 )
+			{
+				if (arg1 != 0)
+				{
+					raise(arg1);
+					Sleep(1);
+				}
+				const char* resp = "ok\n";
+				WriteFile(hPipe, resp, strlen(resp), &writeBytes, NULL);
+				continue;
+			}
 
+			char* resp = "error\n";
+			WriteFile(hPipe, resp, strlen(resp), &writeBytes, NULL);
+
+		}
+	}
+	FlushFileBuffers(hPipe);
+	DisconnectNamedPipe(hPipe);
+	CloseHandle(hPipe);
+}
+void my_signal_thread()
+{
+	for (;;)
+	{
+		my_signal_run_one();
+	}
+
+};
+bool signal_init()
+{
+	for (size_t i = 0; i < 2; ++i) // 一个name pipe只能同时支持一个connection
+	{
+		CloseHandle(CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)my_signal_thread, 0, 0, 0));
+	}
+	return true;
+}
+bool g_signal_init = signal_init();
+
+int kill(int pid, int code)
+{
+	char pipename[64];
+	sprintf(pipename, "\\\\.\\pipe\\_signal_pipe:%d", pid);
+	HANDLE hPipe = CreateFileA(pipename, GENERIC_ALL, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, 0);
+	int ec = GetLastError();
+	if (hPipe != INVALID_HANDLE_VALUE)
+	{
+		char sendmsg[64];
+		sprintf(sendmsg, "kill %d\n", code);
+		DWORD bytes = 0;
+		WriteFile(hPipe, sendmsg, strlen(sendmsg), &bytes, NULL);
+		ec = GetLastError();
+
+		char outbuf[32] = {0};
+		bytes = 0;
+		ReadFile(hPipe, outbuf, sizeof(outbuf), &bytes, NULL);
+		ec = GetLastError();
+
+		CloseHandle(hPipe);
+
+		outbuf[sizeof(outbuf) - 1] = '\0';
+		if (strcmp(outbuf, "ok\n") == 0)
+		{
+			errno = 0;
+			return 0;
+		}
+	}
+
+	errno = ESRCH;
+	return -1;
+}
 #endif

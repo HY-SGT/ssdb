@@ -177,120 +177,6 @@
     <ClInclude Include="..\src\version.h">
       <Filter>源文件\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\arena.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\coding.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\crc32c.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\hash.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\histogram.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\logging.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\mutexlock.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\posix_logger.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\random.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\testharness.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\testutil.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.h">
-      <Filter>deps\levelDb\helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\builder.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\dbformat.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_impl.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\db_iter.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\filename.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_format.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_reader.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\log_writer.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\memtable.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\skiplist.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\snapshot.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\table_cache.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_edit.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\version_set.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\db\write_batch_internal.h">
-      <Filter>deps\levelDb\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\block.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\block_builder.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\filter_block.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\format.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\iterator_wrapper.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\merger.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\table\two_level_iterator.h">
-      <Filter>deps\levelDb\table</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\port\port_win.h">
-      <Filter>deps\levelDb\port</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\port\port.h">
-      <Filter>deps\levelDb\port</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\port\atomic_pointer.h">
-      <Filter>deps\levelDb\port</Filter>
-    </ClInclude>
-    <ClInclude Include="..\deps\leveldb-1.14.0\util\win_logger.h">
-      <Filter>deps\levelDb\util</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\util\platform_win.h">
       <Filter>源文件\util</Filter>
     </ClInclude>
@@ -389,132 +275,6 @@
     <ClCompile Include="platform_win.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\arena.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\bloom.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\cache.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\coding.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\comparator.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\crc32c.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\env.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\filter_policy.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\hash.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\histogram.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\logging.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\options.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\status.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\testharness.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\testutil.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\helpers\memenv\memenv.cc">
-      <Filter>deps\levelDb\helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\builder.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\c.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\dbformat.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_impl.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\db_iter.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\filename.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_reader.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\log_writer.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\memtable.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\repair.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\table_cache.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_edit.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\version_set.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\db\write_batch.cc">
-      <Filter>deps\levelDb\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\block.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\block_builder.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\filter_block.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\format.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\iterator.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\merger.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\table.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\table_builder.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\table\two_level_iterator.cc">
-      <Filter>deps\levelDb\table</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\port\port_win.cc">
-      <Filter>deps\levelDb\port</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\win_logger.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\deps\leveldb-1.14.0\util\env_boost.cc">
-      <Filter>deps\levelDb\util</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\ssdb\options.cpp">
       <Filter>源文件\ssdb</Filter>
     </ClCompile>
@@ -595,6 +355,132 @@
     </ClCompile>
     <ClCompile Include="..\deps\jemalloc-win32\src\zone.c">
       <Filter>deps\jemalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\builder.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\c.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\dbformat.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\db_impl.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\db_iter.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\dumpfile.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\filename.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\log_reader.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\log_writer.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\memtable.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\repair.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\table_cache.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\version_edit.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\version_set.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\db\write_batch.cc">
+      <Filter>deps\levelDb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\helpers\memenv\memenv.cc">
+      <Filter>deps\levelDb\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\port\port_win.cc">
+      <Filter>deps\levelDb\port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\block.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\block_builder.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\filter_block.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\format.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\iterator.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\merger.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\table.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\table_builder.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\table\two_level_iterator.cc">
+      <Filter>deps\levelDb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\arena.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\bloom.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\cache.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\coding.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\comparator.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\crc32c.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\env.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\env_win.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\filter_policy.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\hash.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\histogram.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\logging.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\options.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\status.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\testharness.cc">
+      <Filter>deps\levelDb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\leveldb-1.18-msvc\util\testutil.cc">
+      <Filter>deps\levelDb\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

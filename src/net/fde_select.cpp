@@ -17,7 +17,8 @@ Fdevents::Fdevents(){
 
 Fdevents::~Fdevents(){
 	for(auto it = events_fd.begin(); it != events_fd.end(); ++it){
-		delete it->second;
+		Fdevent* e = it->second;
+		delete e;
 	}
 	events_fd.clear();
 	ready_events.clear();
@@ -59,6 +60,8 @@ int Fdevents::del(int fd){
 	auto it = events_fd.find(fd);
 	if (it != events_fd.end())
 	{
+		Fdevent* e = it->second;
+		delete e;
 		events_fd.erase(it);
 	}
 	return 0;
@@ -74,6 +77,8 @@ int Fdevents::clr(int fd, int flags){
 		it->second->s_flags &= ~flags;
 		if (it->second->s_flags == 0)
 		{
+			Fdevent* e = it->second;
+			delete e;
 			events_fd.erase(it);
 		}
 	}

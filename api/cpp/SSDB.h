@@ -87,6 +87,8 @@ public:
 	virtual const std::vector<std::string>* request(const std::string &cmd, const std::string &s2, const std::vector<std::string> &s3) = 0;
 	/// @}
 
+	virtual Status auth(const std::string& password) = 0;
+
 	/// @name KV methods
 	/// @{
 	virtual Status get(const std::string &key, std::string *val) = 0;

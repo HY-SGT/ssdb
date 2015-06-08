@@ -86,20 +86,13 @@ int proc_multi_zdel(NetworkServer *net, Link *link, const Request &req, Response
 	SSDBServer *serv = (SSDBServer *)net->data;
 	CHECK_NUM_PARAMS(3);
 
-	int num = 0;
 	const Bytes &name = req[1];
-	std::vector<Bytes>::const_iterator it = req.begin() + 2;
-	for(; it != req.end(); it += 1){
-		const Bytes &key = *it;
-		int ret = serv->ssdb->zdel(name, key);
-		if(ret == -1){
-			resp->push_back("error");
-			return 0;
-		}else{
-			num += ret;
-		}
+	int ret = serv->ssdb->multi_zdel(name, req, 2);
+	if(ret == -1){
+		resp->push_back("error");
+		return 0;
 	}
-	resp->reply_int(0, num);
+	resp->reply_int(0, ret);
 	return 0;
 }
 

@@ -366,12 +366,13 @@ int Link::write(){
 		//want = 1;
 		int len = ::write(sock, output->data(), want);
 		if(len == -1){
-			if(errno == EINTR){
+			int ec = errno;
+			if(ec == EINTR){
 				continue;
-			}else if(errno == EWOULDBLOCK){
+			}else if(ec == EWOULDBLOCK){
 				break;
 			}else{
-				//log_debug("fd: %d, write: -1, error: %s", sock, strerror(errno));
+				//log_debug("fd: %d, write: -1, error: %s", sock, strerror(ec));
 				return -1;
 			}
 		}else{

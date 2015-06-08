@@ -151,8 +151,20 @@ class WorkerPool{
 				std::string name;
 		};
 	private:
+		enum JOB_TYPE{
+			JOB_PROC,
+			JOB_STOP
+		};
+		struct JobWrapper 
+		{
+			JOB_TYPE job_type;
+			JOB job;
+		};
+		pthread_mutex_t thread_mutex;
+		pthread_cond_t stop_cond;
+
 		std::string name;
-		Queue<JOB> jobs;
+		Queue<JobWrapper> jobs;
 		SelectableQueue<JOB> results;
 
 		int num_workers;
@@ -329,6 +341,8 @@ template<class W, class JOB>
 WorkerPool<W, JOB>::WorkerPool(const char *name){
 	this->name = name;
 	this->started = false;
+	pthread_mutex_init(&thread_mutex, NULL);
+	pthread_cond_init(&stop_cond, NULL);
 }
 
 template<class W, class JOB>
@@ -336,11 +350,16 @@ WorkerPool<W, JOB>::~WorkerPool(){
 	if(started){
 		stop();
 	}
+	pthread_cond_destroy(&stop_cond);
+	pthread_mutex_destroy(&thread_mutex);
 }
 
 template<class W, class JOB>
 int WorkerPool<W, JOB>::push(JOB job){
-	return this->jobs.push(job);
+	JobWrapper wrap;
+	wrap.job_type = JOB_PROC;
+	wrap.job = job;
+	return this->jobs.push(wrap);
 }
 
 template<class W, class JOB>
@@ -360,20 +379,38 @@ void* WorkerPool<W, JOB>::_run_worker(void *arg){
 	worker->id = id;
 	worker->init();
 	while(1){
-		JOB job;
+		JobWrapper job;
 		if(tp->jobs.pop(&job) == -1){
 			fprintf(stderr, "jobs.pop error\n");
 			::exit(0);
 			break;
 		}
-		worker->proc(&job);
-		if(tp->results.push(job) == -1){
+		if (job.job_type == JOB_STOP) {
+			break;
+		}
+		worker->proc(&job.job);
+		if(tp->results.push(job.job) == -1){
 			fprintf(stderr, "results.push error\n");
 			::exit(0);
 			break;
 		}
 	}
 	worker->destroy();
+
+	auto curr = pthread_self();
+	bool find = false;
+	pthread_mutex_lock(&tp->thread_mutex);
+	for (auto it = tp->tids.begin(); it != tp->tids.end(); ++it)
+	{
+		if(pthread_equal(*it, curr)) {		
+			tp->tids.erase(it);
+			find = true;
+			break;
+		}
+	}
+	pthread_cond_signal(&tp->stop_cond);
+	pthread_mutex_unlock(&tp->thread_mutex);
+	assert(find);
 	return (void *)NULL;
 }
 
@@ -404,12 +441,21 @@ int WorkerPool<W, JOB>::start(int num_workers){
 template<class W, class JOB>
 int WorkerPool<W, JOB>::stop(){
 	// TODO: notify works quit and wait
-	for(int i=0; i<tids.size(); i++){
-#ifdef OS_ANDROID
-#else
-		pthread_cancel(tids[i]);
-#endif
+	JobWrapper stop_job;
+	stop_job.job_type = JOB_STOP;
+	for(size_t i=0, count = tids.size(); i<count; i++){
+		this->jobs.push(stop_job);
 	}
+	timespec abstime;
+	abstime.tv_sec = 1;
+	abstime.tv_nsec = 0;
+	pthread_mutex_lock(&thread_mutex);
+	while (tids.size())
+	{
+		pthread_cond_timedwait(&stop_cond, &thread_mutex, &abstime);
+	}
+	pthread_mutex_unlock(&thread_mutex);
+
 	return 0;
 }
 

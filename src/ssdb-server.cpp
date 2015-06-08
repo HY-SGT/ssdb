@@ -80,6 +80,17 @@ void operator delete[](void* p){
 	}
 }
 #endif
+namespace leveldb
+{
+	void* cache_malloc(size_t len)
+	{
+		return new char[len];
+	}
+	void cache_free(void* p)
+	{
+		delete[] p;
+	}
+}
 
 int main(int argc, char **argv){
 #if SSDB_PLATFORM_WINDOWS

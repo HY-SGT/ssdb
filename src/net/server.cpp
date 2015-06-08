@@ -27,6 +27,7 @@ void signal_handler(int sig){
 		case SIGTERM:
 		case SIGINT:{
 			quit = true;
+			printf("exit....\n");
 			break;
 		}
 #if SSDB_PLATFORM_WINDOWS
@@ -38,6 +39,20 @@ void signal_handler(int sig){
 #endif
 	}
 }
+#if SSDB_PLATFORM_WINDOWS
+BOOL CALLBACK signal_handler_W32(DWORD code)
+{
+	switch (code)
+	{
+	case CTRL_CLOSE_EVENT:
+	case CTRL_SHUTDOWN_EVENT:
+		quit = true;
+		printf("exit....\n");
+		break;
+	}
+	return FALSE;
+}
+#endif
 
 NetworkServer::NetworkServer(){
 	tick_interval = TICK_INTERVAL;
@@ -61,6 +76,7 @@ NetworkServer::NetworkServer(){
 	signal(SIGINT, signal_handler);
 	signal(SIGTERM, signal_handler);
 #if SSDB_PLATFORM_WINDOWS
+	SetConsoleCtrlHandler(signal_handler_W32, TRUE);
 #elif !defined(__CYGWIN__)
 	signal(SIGALRM, signal_handler);
 	{
@@ -237,7 +253,7 @@ void NetworkServer::serve(){
 			}
 		}
 
-		for(it = ready_list.begin(); it != ready_list.end(); it ++){
+		for(auto it = ready_list.begin(); it != ready_list.end(); it ++){
 			Link *link = *it;
 			if(link->error()){
 				this->link_count --;

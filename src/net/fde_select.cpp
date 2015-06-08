@@ -89,7 +89,7 @@ int Fdevents::clr(int fd, int flags){
 const Fdevents::events_t* Fdevents::wait(int timeout_ms){
 	struct timeval tv;
 	struct Fdevent *fde;
-	int i, ret;
+	int ret;
 
 	ready_events.clear();
 	

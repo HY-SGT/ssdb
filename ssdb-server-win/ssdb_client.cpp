@@ -4,6 +4,8 @@
 #define SSDB_PLATFORM_WINDOWS	1
 #endif
 
+#define SSDB_RECONNECT 1
+
 #include "../src/util/bytes.cpp"
 #include "../src/net/link.cpp"
 #include "../api/cpp/SSDB_impl.cpp"

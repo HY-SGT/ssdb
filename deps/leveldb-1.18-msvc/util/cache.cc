@@ -12,6 +12,8 @@
 #include "util/mutexlock.h"
 
 namespace leveldb {
+	void* cache_malloc(size_t len);
+	void cache_free(void*);
 
 Cache::~Cache() {
 }
@@ -189,7 +191,7 @@ void LRUCache::Unref(LRUHandle* e) {
   if (e->refs <= 0) {
     usage_ -= e->charge;
     (*e->deleter)(e->key(), e->value);
-    free(e);
+    cache_free(e);
   }
 }
 
@@ -228,7 +230,7 @@ Cache::Handle* LRUCache::Insert(
   MutexLock l(&mutex_);
 
   LRUHandle* e = reinterpret_cast<LRUHandle*>(
-      malloc(sizeof(LRUHandle)-1 + key.size()));
+      cache_malloc(sizeof(LRUHandle)-1 + key.size()));
   e->value = value;
   e->deleter = deleter;
   e->charge = charge;

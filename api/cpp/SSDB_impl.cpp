@@ -17,6 +17,18 @@ Status _read_list(const std::vector<std::string> *resp, std::vector<std::string>
 }
 
 inline static
+Status _read_list_bool(const std::vector<std::string> *resp, std::vector<bool> *ret){
+	Status s(resp);
+	if(s.ok() && ret){
+		std::vector<std::string>::const_iterator it;
+		for(it = resp->begin() + 1; it != resp->end(); it++){
+			ret->push_back(str_to_int64(*it)!=0);
+		}
+	}
+	return s;
+}
+
+inline static
 Status _read_int64(const std::vector<std::string> *resp, int64_t *ret){
 	Status s(resp);
 	if(s.ok()){
@@ -80,15 +92,53 @@ Client* Client::connect(const char *ip, int port){
 		delete client;
 		return NULL;
 	}
+#if SSDB_RECONNECT
+	client->m_ip = ip;
+	client->m_port = port;
+#endif
 	return client;
 }
+
+#if SSDB_RECONNECT
+bool ClientImpl::reconnect()
+{
+	Link* pLink = nullptr;
+	while (!pLink)
+	{
+		pLink = Link::connect(m_ip.c_str(), m_port);
+	}
+	Link* raw = this->link;
+	this->link = pLink;
+	bool ok = true;
+	if (m_password.size() && !this->auth(m_password).ok())
+	{
+		delete pLink;
+		this->link = raw;
+		return false;
+	}
+	std::swap(this->link->output, raw->output);
+	delete raw;
+	return true;
+}
+#endif
 
 const std::vector<std::string>* ClientImpl::request(const std::vector<std::string> &req){
 	if(link->send(req) == -1){
 		return NULL;
 	}
 	if(link->flush() == -1){
+#if SSDB_RECONNECT
+		if (!reconnect())
+		{
+			return NULL;
+		}
+		if (link->flush() == -1)
+		{
+			return NULL;
+		}
+#else
 		return NULL;
+#endif
 	}
 	const std::vector<Bytes> *packet = link->response();
 	if(packet == NULL){
@@ -170,6 +220,18 @@ const std::vector<std::string>* ClientImpl::request(const std::string &cmd, cons
 		req.push_back(*it);
 	}
 	return request(req);
+}
+
+Status ClientImpl::auth(const std::string& password)
+{
+	Status st( this->request("auth", password) );
+#if SSDB_RECONNECT
+	if (st.ok())
+	{
+		m_password = password;
+	}
+#endif
+	return st;
 }
 
 /******************** KV *************************/

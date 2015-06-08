@@ -54,6 +54,31 @@ int SSDBImpl::zdel(const Bytes &name, const Bytes &key, char log_type){
 	return ret;
 }
 
+int SSDBImpl::multi_zdel(const Bytes &name, const std::vector<Bytes> &keys, int offset, char log_type){
+	Transaction trans(binlogs);
+
+	int del_num = 0;
+	for (auto it = keys.begin() + offset; it != keys.end(); ++it){
+		int ret = zdel_one(this, name, *it, log_type);
+		if (ret < 0)
+		{
+			return -1;
+		}
+		del_num += ret;
+	}
+	if (del_num > 0) {
+		if( incr_zsize(this, name, -del_num) == -1 ) {
+			return -1;
+		}
+		leveldb::Status s = binlogs->commit();
+		if(!s.ok()){
+			log_error("zdel error: %s", s.ToString().c_str());
+			return -1;
+		}
+	}
+	return del_num;
+}
+
 int SSDBImpl::zincr(const Bytes &name, const Bytes &key, int64_t by, int64_t *new_val, char log_type){
 	Transaction trans(binlogs);
 

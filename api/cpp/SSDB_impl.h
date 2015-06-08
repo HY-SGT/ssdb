@@ -12,6 +12,13 @@ private:
 	
 	Link *link;
 	std::vector<std::string> resp_;
+
+#if SSDB_RECONNECT
+	std::string m_ip;
+	uint32_t m_port;
+	std::string m_password;
+	bool reconnect();
+#endif
 public:
 	ClientImpl();
 	~ClientImpl();
@@ -25,6 +32,8 @@ public:
 	virtual const std::vector<std::string>* request(const std::string &cmd, const std::string &s2, const std::string &s3, const std::string &s4, const std::string &s5, const std::string &s6);
 	virtual const std::vector<std::string>* request(const std::string &cmd, const std::vector<std::string> &s2);
 	virtual const std::vector<std::string>* request(const std::string &cmd, const std::string &s2, const std::vector<std::string> &s3);
+
+	virtual Status auth(const std::string& password);
 
 	virtual Status get(const std::string &key, std::string *val);
 	virtual Status set(const std::string &key, const std::string &val);

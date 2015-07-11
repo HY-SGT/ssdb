@@ -71,6 +71,7 @@
     <IntDir>$(SolutionDir)obj\$(Configuration)_x64</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)D_x64</TargetName>
+    <OutDir>$(SolutionDir)out\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)obj\$(Configuration)</IntDir>
@@ -81,6 +82,7 @@
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>P:\sdk\lib;P:\sdk\boost\1.57.0\stage\x64\lib;$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;$(WindowsSdkDir)lib\x64</LibraryPath>
     <TargetName>$(ProjectName)_x64</TargetName>
+    <OutDir>$(SolutionDir)out\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

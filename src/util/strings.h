@@ -22,13 +22,10 @@ found in the LICENSE file.
 #include <direct.h>
 
 
-#if _WIN64
-# define PRIu64 "lu" 
-# define PRId64 "ld" 
-#else
-# define PRIu64 "llu"
-# define PRId64 "lld" 
-#endif
+#undef PRIu64
+#undef PRId64
+#define PRIu64 "llu"
+#define PRId64 "lld" 
 
 #else
 #include <unistd.h>
